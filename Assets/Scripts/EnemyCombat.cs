@@ -45,7 +45,7 @@ public class EnemyCombat : MonoBehaviour
 
     void AttackPlayer()
     {
-        Debug.Log("Enemy attacks!");
+        // Debug.Log("Enemy attacks!");
         animator.SetTrigger("Attack"); // Memicu animasi serangan
         player.GetComponent<PlayerHealth>().TakeDamage(attackDamage); // Memberikan kerusakan pada pemain
     }
@@ -53,7 +53,7 @@ public class EnemyCombat : MonoBehaviour
     private IEnumerator AttackCooldown()
     {
         isCooldown = true; // Mulai cooldown
-        Debug.Log("Enemy is on cooldown!");
+        // Debug.Log("Enemy is on cooldown!");
         yield return new WaitForSeconds(attackCooldown); // Tunggu hingga cooldown selesai
         currentAttackCount = 0; // Reset jumlah serangan
         isCooldown = false; // Reset cooldown

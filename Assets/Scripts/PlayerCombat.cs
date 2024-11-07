@@ -28,7 +28,7 @@ public class PlayerCombat : MonoBehaviour
     // Fungsi untuk melakukan serangan
     void Attack()
     {
-        if (playerHealth.isDead)
+        if (playerHealth.IsDead())
             return; // Tidak bisa menyerang jika mati
 
         // Memicu animasi serangan
