@@ -14,6 +14,7 @@ public class WalkState : IPlayerState
 
     public void Enter()
     {
+        _playerMovement.animator.SetFloat("speed", 0);
         UpdateAnimationDirection();
     }
 
@@ -24,8 +25,15 @@ public class WalkState : IPlayerState
 
         _playerMovement.MoveCharacter();
         UpdateAnimationDirection();
-        
-        if (_playerMovement.movement.sqrMagnitude == 0)
+
+        // Jika tombol lari ditekan, pindah ke RunState
+        if (Input.GetMouseButton(1))
+        {
+            // Debug.Log("RUnning");
+            _playerMovement.stateMachine.ChangeState(new RunState(_playerMovement));
+        }
+        // Jika tidak ada input, kembali ke IdleState
+        else if (_playerMovement.movement.sqrMagnitude == 0)
         {
             _playerMovement.stateMachine.ChangeState(new IdleState(_playerMovement));
         }

@@ -14,6 +14,7 @@ public class IdleState : IPlayerState
     public void Enter()
     {
         _playerMovement.animator.SetFloat("direction", 0);
+        _playerMovement.animator.SetFloat("speed", 0);
     }
 
     public void Update()
