@@ -1,31 +1,49 @@
+// PlayerMovement.cs
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerCombat))]
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
     public Animator animator;
+    public Vector2 movement;
 
-    Vector2 movement;
+    private PlayerStateMachine stateMachine;
+    private PlayerCombat _playerCombat;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        // Get input dari keyboard untuk pergerakan
+        stateMachine = GetComponent<PlayerStateMachine>();
+        _playerCombat = GetComponent<PlayerCombat>();
+
+        // Mulai dengan WalkState
+        stateMachine.ChangeState(new WalkState(this));
+    }
+
+    private void Update()
+    {
+        // Jangan gerakkan karakter saat menyerang
+        if (animator.GetBool("IsAttacking"))
+            return; // Jangan gerakkan karakter saat menyerang
+
+        // Input pergerakan
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        // Update parameter animasi berdasarkan input
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        // Input untuk serangan
+        if (Input.GetMouseButtonDown(0) && !animator.GetBool("IsAttacking"))
+        {
+            // Pass stateMachine to AttackState constructor
+            stateMachine.ChangeState(new AttackState(_playerCombat, this, stateMachine));
+        }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        // Gerakkan player menggunakan Rigidbody2D
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // Terapkan pergerakan ke Rigidbody2D
+        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 }
