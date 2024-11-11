@@ -14,19 +14,28 @@ public class WalkState : IPlayerState
 
     public void Enter()
     {
-        
+        UpdateAnimationDirection();
     }
 
     public void Update()
     {
         _playerMovement.movement.x = Input.GetAxisRaw("Horizontal");
         _playerMovement.movement.y = Input.GetAxisRaw("Vertical");
+
+        _playerMovement.MoveCharacter();
+        UpdateAnimationDirection();
         
         if (_playerMovement.movement.sqrMagnitude == 0)
         {
-            _playerMovement.animator.SetFloat("direction", 0); // Idle
+            _playerMovement.stateMachine.ChangeState(new IdleState(_playerMovement));
         }
-        else if (_playerMovement.movement.y > 0)
+
+    }
+
+
+    public void UpdateAnimationDirection()
+    {
+        if (_playerMovement.movement.y > 0)
         {
             _playerMovement.animator.SetFloat("direction", 1); // Walk Up
         }
@@ -42,10 +51,6 @@ public class WalkState : IPlayerState
         {
             _playerMovement.animator.SetFloat("direction", 4); // Walk Right
         }
-
-        // _playerMovement.animator.SetFloat("Horizontal", _playerMovement.movement.x);
-        // _playerMovement.animator.SetFloat("Vertical", _playerMovement.movement.y);
-        // _playerMovement.animator.SetFloat("Speed", _playerMovement.movement.sqrMagnitude);
     }
 
     public void Exit()
