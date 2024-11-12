@@ -5,51 +5,55 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Animator animator;
-    public Transform attackPoint;  // Titik asal serangan
-    public float attackRange;  // Jarak serangan
-    public LayerMask enemyLayers;  // Layer untuk mendeteksi musuh
-    public int attackDamage;  // Damage serangan
+    public Transform attackPoint;
+    public float attackRange;
+    public LayerMask enemyLayers;
+    public int attackDamage;
     private PlayerHealth playerHealth;
 
     void Start()
     {
-        playerHealth = GetComponent<PlayerHealth>(); // Mengambil referensi ke PlayerHealth
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Klik kiri untuk menyerang
-        {
-            Attack();
-        }
+        // Mungkin ditangani oleh PlayerStateMachine
     }
 
-    // Fungsi untuk melakukan serangan
-    void Attack()
+    // Method untuk melakukan serangan berdasarkan tipe
+    public void PerformAttack()
     {
         if (playerHealth.IsDead())
             return; // Tidak bisa menyerang jika mati
 
-        // Memicu animasi serangan
-        animator.SetTrigger("Attack");
+        // Set trigger animasi berdasarkan tipe serangan
 
+        // Terapkan damage jika tidak dalam kondisi mati
+        if (!playerHealth.IsDead())
+        {
+            ApplyDamage();
+        }
+    }
+
+    // Method untuk mendeteksi dan memberi damage kepada musuh yang terkena
+    void ApplyDamage()
+    {
         // Deteksi musuh dalam jarak serangan menggunakan OverlapCircle
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         // Damage musuh yang terkena
         foreach (Collider2D enemy in hitEnemies)
         {
-            // Ambil komponen EnemyHealth pada musuh yang terkena
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(attackDamage); // Serang musuh
+                enemyHealth.TakeDamage(attackDamage);
             }
         }
     }
 
-    // Fungsi untuk menggambar jarak serangan (untuk debugging)
+    // Menampilkan jarak serangan dalam editor
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
