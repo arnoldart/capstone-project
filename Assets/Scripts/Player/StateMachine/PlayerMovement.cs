@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 movement;
 
     public PlayerStateMachine stateMachine { get; private  set; }
+    
+    private float holdTime = 0f; // Waktu yang tombol ditekan
+    private float maxHoldTimeForLightWeapon = 0.5f; // Durasi maksimum untuk light weapon
+    private float maxHoldTimeForMediumWeapon = 1f; // Durasi maksimum untuk medium weapon
+
     private PlayerCombat _playerCombat;
 
     private void Start()
@@ -32,6 +37,51 @@ public class PlayerMovement : MonoBehaviour
             _currentSpeed = walkSpeed; // Set kecepatan berjalan
         }
 
+        if (Input.GetMouseButtonDown(0)) // Mouse button pertama ditekan
+        {
+            holdTime = 0f; // Reset hold time saat tombol ditekan
+        }
+
+        if (Input.GetMouseButton(0)) // Mouse button pertama ditahan
+        {
+            holdTime += Time.deltaTime; // Tambahkan durasi hold time
+
+            // Tentukan jenis senjata berdasarkan waktu penahanan
+            if (holdTime >= maxHoldTimeForMediumWeapon)
+            {
+                // Jika tombol ditekan lebih lama dari durasi untuk senjata medium
+                // stateMachine.ChangeState(new HeavyWeaponState(this));
+                Debug.Log("HeavyWeaponState");
+            }
+            else if (holdTime >= maxHoldTimeForLightWeapon)
+            {
+                // Jika tombol ditekan lebih lama dari durasi untuk senjata ringan
+                // stateMachine.ChangeState(new MediumWeaponState(this));
+                Debug.Log("MediumWeaponState");
+            }
+            else
+            {
+                // Jika tombol ditekan lebih sebentar, gunakan senjata ringan atau single slash
+                // stateMachine.ChangeState(new LightWeaponState(this));
+                Debug.Log("LightWeaponState");
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0)) // Mouse button pertama dilepaskan
+        {
+            // Tentukan kondisi saat tombol dilepaskan
+            if (holdTime < maxHoldTimeForLightWeapon)
+            {
+                Debug.Log("SingleSlashState");
+                stateMachine.ChangeState(new SingleSlashState(this)); // Single Slash jika tombol cepat dilepas
+            }
+            else
+            {
+                stateMachine.ChangeState(new IdleState(this)); // Kembali ke idle jika tombol dilepaskan setelah hold
+            }
+            holdTime = 0f; // Reset hold time setelah tombol dilepaskan
+        }
+
         // Ambil input pergerakan
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -45,12 +95,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Update lastMoveDirection dengan arah pergerakan saat ini
             lastMoveDirection = movement.normalized;
-
-            // Jika ada input pergerakan, ubah ke WalkState atau RunState
-            // if (_currentSpeed == runSpeed)
-                // stateMachine.ChangeState(new RunState(this));
-            // else
-                stateMachine.ChangeState(new WalkState(this));
+            stateMachine.ChangeState(new WalkState(this));
         }
     }
 

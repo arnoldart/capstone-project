@@ -22,42 +22,21 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // Method untuk melakukan serangan berdasarkan tipe
-    public void PerformAttack(string attackType)
+    public void PerformAttack()
     {
         if (playerHealth.IsDead())
             return; // Tidak bisa menyerang jika mati
 
-        switch (attackType)
+        // Set trigger animasi berdasarkan tipe serangan
+
+        // Terapkan damage jika tidak dalam kondisi mati
+        if (!playerHealth.IsDead())
         {
-            case "SingleSlash":
-                animator.SetTrigger("SingleSlash");
-                ApplyDamage();
-                break;
-            // case "LightWeapon":
-            //     animator.SetTrigger("LightWeapon");
-            //     ApplyDamage();
-            //     break;
-            // case "MediumWeapon":
-            //     animator.SetTrigger("MediumWeapon");
-            //     ApplyDamage();
-            //     break;
-            // case "HeavyWeapon":
-            //     animator.SetTrigger("HeavyWeapon");
-            //     ApplyDamage();
-            //     break;
-            // case "SkyfallBlast":
-            //     animator.SetTrigger("SkyfallBlast");
-            //     ApplyDamage();
-            //     break;
-            // case "CircleBlast":
-            //     animator.SetTrigger("CircleBlast");
-            //     ApplyDamage();
-            //     break;
-            default:
-                break;
+            ApplyDamage();
         }
     }
 
+    // Method untuk mendeteksi dan memberi damage kepada musuh yang terkena
     void ApplyDamage()
     {
         // Deteksi musuh dalam jarak serangan menggunakan OverlapCircle
@@ -74,6 +53,7 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    // Menampilkan jarak serangan dalam editor
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

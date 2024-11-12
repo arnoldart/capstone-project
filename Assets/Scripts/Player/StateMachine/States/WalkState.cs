@@ -27,14 +27,6 @@ public class WalkState : IPlayerState
         _playerMovement.movement.y = Input.GetAxisRaw("Vertical");
 
         _playerMovement.MoveCharacter();
-        // UpdateAnimationDirection();
-
-        // Jika tombol lari ditekan, pindah ke RunState
-        // if (Input.GetMouseButton(1))
-        // {
-        //     // Debug.Log("RUnning");
-        //     _playerMovement.stateMachine.ChangeState(new RunState(_playerMovement));
-        // }
         // Jika tidak ada input, kembali ke IdleState
         if (_playerMovement.movement.sqrMagnitude == 0)
         {

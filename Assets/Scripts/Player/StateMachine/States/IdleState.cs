@@ -13,7 +13,6 @@ public class IdleState : IPlayerState
     }
     public void Enter()
     {
-        // _playerMovement.animator.SetFloat("direction", 0);
         _playerMovement.animator.SetFloat("speed", 0);
         _playerMovement.animator.SetFloat("lastMoveX", _playerMovement.lastMoveDirection.x);
         _playerMovement.animator.SetFloat("lastMoveY", _playerMovement.lastMoveDirection.y);
@@ -21,10 +20,6 @@ public class IdleState : IPlayerState
 
     public void Update()
     {
-        // _playerMovement.animator.SetFloat("directionX", _playerMovement.movement.x);
-        // _playerMovement.animator.SetFloat("directionY", _playerMovement.movement.y);
-        
-
         if (_playerMovement.movement.sqrMagnitude > 0f)
         {
             _playerMovement.stateMachine.ChangeState(new WalkState(_playerMovement));
