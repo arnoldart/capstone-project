@@ -7,7 +7,6 @@ public class EnemyMovement : MonoBehaviour
     public float moveSpeed;               // Kecepatan gerak musuh
     public Rigidbody2D rb;                     // Referensi ke komponen Rigidbody2D
     public Animator animator;                  // Referensi ke komponen Animator
-    public Transform target;                   // Target musuh, biasanya pemain
     public float detectionRange;          // Jarak deteksi musuh terhadap pemain
     private Vector2 movement;                  // Arah pergerakan saat ini
 
@@ -15,14 +14,25 @@ public class EnemyMovement : MonoBehaviour
     public float changeDirectionTime = 2f;     // Interval waktu untuk mengubah arah
     private float directionTimer;              // Timer untuk pelacakan perubahan arah
 
+    private Transform target;                  // Target musuh, biasanya pemain
+
     void Start()
     {
+        // Cari objek dengan tag "Player" dan set sebagai target
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform;
+        }
+
         directionTimer = changeDirectionTime;  // Setel timer ke interval awal
         ChangeRandomDirection();               // Set arah acak awal
     }
 
     void Update()
     {
+        if (target == null) return; // Jika target tidak ditemukan, hentikan Update
+
         // Menghitung jarak antara musuh dan pemain
         float distanceToPlayer = Vector2.Distance(transform.position, target.position);
 
@@ -59,6 +69,8 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (target == null) return; // Jika target tidak ditemukan, hentikan FixedUpdate
+
         // Pindahkan musuh ke arah pergerakan saat ini
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }

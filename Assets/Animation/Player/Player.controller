@@ -256,7 +256,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: speed
-    m_EventTreshold: 0
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5124956408709562223}
   m_Solo: 0
@@ -524,7 +524,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: speed
-    m_EventTreshold: 1
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8312459992515023068}
   m_Solo: 0
@@ -712,7 +712,7 @@ BlendTree:
   m_Name: Idle
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 41b5cdb8a9e7e0248850180fdecb01b0, type: 2}
+    m_Motion: {fileID: 7400000, guid: b484e859dc5a3bd4f8e06f22a8a54987, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -720,7 +720,7 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 882a54f23fce48046b9271eab5b4c06f, type: 2}
+    m_Motion: {fileID: 7400000, guid: 9af0d1e36bba28e46921b895151001a9, type: 2}
     m_Threshold: 2
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -728,7 +728,7 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: d5aea7962df95f34398eebbb0096ae35, type: 2}
+    m_Motion: {fileID: 0}
     m_Threshold: 3
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -736,7 +736,7 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 390a0d0b34c0803449954cb0868ace95, type: 2}
+    m_Motion: {fileID: 0}
     m_Threshold: 4
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
