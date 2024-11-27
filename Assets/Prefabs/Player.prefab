@@ -208,6 +208,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   attackDamage: 2
+  projectilePrefab: {fileID: 0}
+  projectileSpawnPoint: {fileID: 0}
+  projectileCooldown: 1
 --- !u!114 &4275727267449596523
 MonoBehaviour:
   m_ObjectHideFlags: 0
