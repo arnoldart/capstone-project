@@ -48,7 +48,7 @@ public class EnemyHealth : Health
 
     protected override void Die()
     {
-        isDead = true;
+        base.Die();
         // Debug.Log("Enemy died!");
         
         if (animator != null)
