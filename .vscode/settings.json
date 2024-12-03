@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Kafka.sln"
+    "dotnet.defaultSolution": "capstone-project-main.sln"
 }

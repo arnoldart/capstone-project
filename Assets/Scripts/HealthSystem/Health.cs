@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Health : MonoBehaviour
 {
-    public int health = 100;
     public int maxHealth;
+    public int health = 100;
     protected bool isDead = false;
+    public UnityEvent onDeathEvent;
     
     protected virtual void Awake()
     {
@@ -40,7 +42,11 @@ public abstract class Health : MonoBehaviour
     }
 
     // Fungsi abstrak untuk mengatur kematian
-    protected abstract void Die();
+    protected virtual void Die()
+    {
+        isDead = true;
+        onDeathEvent?.Invoke();
+    }
 
     // Fungsi untuk inisialisasi tambahan di turunan
     protected virtual void Initialize() { }

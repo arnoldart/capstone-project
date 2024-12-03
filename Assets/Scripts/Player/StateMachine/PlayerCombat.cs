@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
 
     private float nextProjectileTime = 0f; // Timer untuk cooldown proyektil
     private PlayerHealth playerHealth; // Skrip kesehatan pemain
+    private Vector2 lastDirection = Vector2.right; // Default ke kanan
 
     void Start()
     {
@@ -31,15 +32,27 @@ public class PlayerCombat : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && Time.time >= nextProjectileTime) // Klik kanan untuk proyektil
         {
-            ShootProjectile();
+            Vector2 projectileDirection = GetProjectileDirection(); // Dapatkan arah proyektil
+            ShootProjectile(projectileDirection);
             nextProjectileTime = Time.time + projectileCooldown; // Set cooldown proyektil
         }
+    }
+
+    // Mendapatkan arah proyektil berdasarkan input keyboard
+    Vector2 GetProjectileDirection()
+    {
+        if (Input.GetKey(KeyCode.W)) lastDirection = Vector2.up;    // Atas
+        if (Input.GetKey(KeyCode.S)) lastDirection = Vector2.down;  // Bawah
+        if (Input.GetKey(KeyCode.A)) lastDirection = Vector2.left;  // Kiri
+        if (Input.GetKey(KeyCode.D)) lastDirection = Vector2.right; // Kanan
+
+        return lastDirection; // Mengembalikan arah terakhir yang ditekan
     }
 
     // Melakukan serangan melee
     public void PerformAttack()
     {
-        if (playerHealth.IsDead())
+        if (playerHealth != null && playerHealth.IsDead())
             return;
 
         if (animator != null)
@@ -60,29 +73,31 @@ public class PlayerCombat : MonoBehaviour
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(attackDamage);
+                enemyHealth.TakeDamage(attackDamage); // Memberikan damage pada musuh
             }
         }
     }
 
-    // Menembakkan proyektil
-    void ShootProjectile()
+    // Menembakkan proyektil ke arah tertentu
+    void ShootProjectile(Vector2 direction)
     {
-        if (playerHealth.IsDead())
+        if (playerHealth != null && playerHealth.IsDead())
             return;
 
-        // Membuat proyektil
-        GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
-        // Mengatur arah proyektil berdasarkan arah pemain
+        // Set direction of the projectile
         Projectile projectileScript = projectile.GetComponent<Projectile>();
         if (projectileScript != null)
         {
-            projectileScript.direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            projectileScript.direction = direction; // Set arah proyektil
         }
 
+        // Set the animation direction based on the projectile's direction
         if (animator != null)
         {
+            animator.SetFloat("directionX", direction.x);
+            animator.SetFloat("directionY", direction.y);
             animator.SetTrigger("Shoot"); // Trigger animasi tembakan
         }
     }
@@ -94,6 +109,6 @@ public class PlayerCombat : MonoBehaviour
             return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange); // Menampilkan area serangan
     }
 }
