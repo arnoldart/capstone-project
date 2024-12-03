@@ -3,31 +3,33 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 10f; // Kecepatan proyektil
-    public int damage = 10; // Damage yang diberikan proyektil
-    public float lifetime = 5f; // Durasi hidup proyektil sebelum dihancurkan otomatis
+    public int damage = 10; // Damage proyektil
+    public float lifetime = 5f; // Durasi hidup proyektil
     public Vector2 direction = Vector2.right; // Arah default proyektil
+
+    private Rigidbody2D rb;
 
     void Start()
     {
-        Destroy(gameObject, lifetime); // Hancurkan proyektil setelah durasi tertentu
-    }
+        rb = GetComponent<Rigidbody2D>();
 
-    void Update()
-    {
-        // Proyektil bergerak dalam dunia 2D
-        transform.Translate(direction * speed * Time.deltaTime);
+        if (rb != null)
+        {
+            rb.velocity = direction.normalized * speed; // Proyektil bergerak sesuai arah
+        }
+
+        Destroy(gameObject, lifetime); // Hancurkan setelah waktu tertentu
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Cek apakah proyektil mengenai musuh
         EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            enemyHealth.TakeDamage(damage); // Berikan damage
-            Destroy(gameObject); // Hancurkan proyektil setelah mengenai musuh
+            enemyHealth.TakeDamage(damage); // Berikan damage ke musuh
+            Destroy(gameObject); // Hancurkan proyektil
         }
 
-        // Proyektil juga bisa dihancurkan jika menabrak dinding atau objek lainnya (opsional)
+        // Opsional: Tambahkan logika untuk dinding atau objek lain.
     }
 }
