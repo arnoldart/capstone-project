@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: 7a21aa2bdc4d8724baf97022da81d5ab
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 2254
+        y: 88
+        width: 178
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c817886ef29f7341abb3ef9e8d33b7d
+      internalID: -1443080050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 2574
+        y: 43
+        width: 257
+        height: 277
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 009c2b60ab4fd7e4fb8af78c1da296ba
+      internalID: -2025122760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 3247
+        y: 66
+        width: 171
+        height: 235
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 212fc4e71c424b44fb7fc7b067d23f29
+      internalID: -463495770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 124
+        width: 139
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83932a2dfa8d03d4fbe4e3d67d8d65bf
+      internalID: -1161341581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1654
+        y: 118
+        width: 157
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8410c46343dc284da3c0dd32f341c6c
+      internalID: 554991419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1974
+        y: 124
+        width: 137
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b73e0513154e1514590358cdc94dbd36
+      internalID: -1686538821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2903
+        y: 42
+        width: 181
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163714affc4d1ba42bd7e0a2bce447a1
+      internalID: 1326351651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 138
+        width: 62
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94fb77b4dfc472499c45b8cf95c30e0
+      internalID: 615038290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 129
+        width: 118
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfeebd5d431e19349a0c9d2e507992cb
+      internalID: 1481228139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 129
+        width: 117
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a11d16913ce0d104d90d1aef6166f8b8
+      internalID: -564875178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 148
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f782df98dab30d34183566bf0c54927f
+      internalID: 1763980507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile_fire-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 88
+        width: 139
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae2742bee1cbc1b4eaec0f8b84d1a7c3
+      internalID: 19704498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Projectile_fire-Sheet_0: -1443080050
+      Projectile_fire-Sheet_1: -2025122760
+      Projectile_fire-Sheet_10: 1681848528
+      Projectile_fire-Sheet_11: 1368394120
+      Projectile_fire-Sheet_12: 134961498
+      Projectile_fire-Sheet_13: -837775115
+      Projectile_fire-Sheet_14: 615038290
+      Projectile_fire-Sheet_15: 1481228139
+      Projectile_fire-Sheet_16: -564875178
+      Projectile_fire-Sheet_17: -1640491594
+      Projectile_fire-Sheet_18: 1763980507
+      Projectile_fire-Sheet_19: -1965968532
+      Projectile_fire-Sheet_2: -533938192
+      Projectile_fire-Sheet_20: -1492079559
+      Projectile_fire-Sheet_21: 249957494
+      Projectile_fire-Sheet_22: -1540224561
+      Projectile_fire-Sheet_23: 1708670309
+      Projectile_fire-Sheet_24: 71278630
+      Projectile_fire-Sheet_25: -1212431584
+      Projectile_fire-Sheet_26: 519571604
+      Projectile_fire-Sheet_27: 135744567
+      Projectile_fire-Sheet_28: -499410869
+      Projectile_fire-Sheet_29: 19704498
+      Projectile_fire-Sheet_3: -463495770
+      Projectile_fire-Sheet_4: 800295981
+      Projectile_fire-Sheet_5: -1161341581
+      Projectile_fire-Sheet_6: 554991419
+      Projectile_fire-Sheet_7: -1686538821
+      Projectile_fire-Sheet_8: 1326351651
+      Projectile_fire-Sheet_9: -1254723430
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
