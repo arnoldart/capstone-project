@@ -62,12 +62,12 @@ public class GameChapter : MonoBehaviour
         List<Chapter> chapters = GetChapters();
         foreach (Chapter chapter in chapters)
         {
-            Debug.Log(chapter.chapter);
             if (chapter.chapter == chapterName)
             {
                 return chapter.isComplete;
             }
         }
+
         return false;
     }
     
