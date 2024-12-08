@@ -17,6 +17,8 @@ public class EnemyCombat : MonoBehaviour
     private Transform player;             // Referensi ke pemain
     private Animator animator;            // Referensi ke animator musuh
 
+    public float moveSpeed = 3f;          // Kecepatan pergerakan musuh
+
     void Start()
     {
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player"); // Cari pemain berdasarkan tag
@@ -56,6 +58,12 @@ public class EnemyCombat : MonoBehaviour
                 }
             }
         }
+
+        // Menggerakkan musuh ke arah pemain
+        if (distanceToPlayer > attackRange) // Jika pemain lebih jauh dari jangkauan serangan
+        {
+            MoveTowardsPlayer(); // Gerakkan musuh ke arah pemain
+        }
     }
 
     void AttackPlayer()
@@ -71,6 +79,27 @@ public class EnemyCombat : MonoBehaviour
         else
         {
             Debug.LogError("PlayerHealth component not found on Player! Please attach a PlayerHealth component.");
+        }
+    }
+
+    void MoveTowardsPlayer()
+    {
+        if (player == null) return;
+
+        // Menghitung arah menuju pemain
+        Vector2 direction = (player.position - transform.position).normalized;
+        
+        // Menggerakkan musuh ke arah pemain
+        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+
+        // Update parameter animasi untuk Blend Tree
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        
+        // Memutar musuh agar menghadap ke arah pemain
+        if (direction.x != 0)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
         }
     }
 
