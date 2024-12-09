@@ -47,7 +47,6 @@ public class CameraController : MonoBehaviour
         if (player != null)
         {
             target = player.transform;
-            Debug.Log("Player ditemukan dan kamera berhasil diatur untuk mengikuti.");
         }
         else
         {

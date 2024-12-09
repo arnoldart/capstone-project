@@ -13,8 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Vector2 movement;
 
-    public PlayerStateMachine stateMachine { get; private  set; }
-    
+    public Transform attackPoint; // Titik serangan
+    public float attackPointOffset = 0.5f; // Jarak attack point dari pemain
+
+    public PlayerStateMachine stateMachine { get; private set; }
+
     private float holdTime = 0f; // Waktu yang tombol ditekan
     private float maxHoldTimeForLightWeapon = 0.5f; // Durasi maksimum untuk light weapon
     private float maxHoldTimeForMediumWeapon = 1f; // Durasi maksimum untuk medium weapon
@@ -25,68 +28,26 @@ public class PlayerMovement : MonoBehaviour
     {
         stateMachine = GetComponent<PlayerStateMachine>();
         stateMachine.ChangeState(new WalkState(this));
-        lastMoveDirection = Vector2.zero;
+        lastMoveDirection = Vector2.down; // Default arah awal
     }
 
     private void Update()
     {
         // Cek apakah pemain menekan tombol kanan mouse untuk berlari
-        if(Input.GetMouseButton(1)) {
+        if (Input.GetMouseButton(1))
+        {
             _currentSpeed = runSpeed; // Set kecepatan berlari
-        }else {
+        }
+        else
+        {
             _currentSpeed = walkSpeed; // Set kecepatan berjalan
-        }
-
-        if (Input.GetMouseButtonDown(0)) // Mouse button pertama ditekan
-        {
-            holdTime = 0f; // Reset hold time saat tombol ditekan
-        }
-
-        if (Input.GetMouseButton(0)) // Mouse button pertama ditahan
-        {
-            holdTime += Time.deltaTime; // Tambahkan durasi hold time
-
-            // Tentukan jenis senjata berdasarkan waktu penahanan
-            if (holdTime >= maxHoldTimeForMediumWeapon)
-            {
-                // Jika tombol ditekan lebih lama dari durasi untuk senjata medium
-                // stateMachine.ChangeState(new HeavyWeaponState(this));
-                Debug.Log("HeavyWeaponState");
-            }
-            else if (holdTime >= maxHoldTimeForLightWeapon)
-            {
-                // Jika tombol ditekan lebih lama dari durasi untuk senjata ringan
-                // stateMachine.ChangeState(new MediumWeaponState(this));
-                Debug.Log("MediumWeaponState");
-            }
-            else
-            {
-                // Jika tombol ditekan lebih sebentar, gunakan senjata ringan atau single slash
-                // stateMachine.ChangeState(new LightWeaponState(this));
-                Debug.Log("LightWeaponState");
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0)) // Mouse button pertama dilepaskan
-        {
-            // Tentukan kondisi saat tombol dilepaskan
-            if (holdTime < maxHoldTimeForLightWeapon)
-            {
-                Debug.Log("SingleSlashState");
-                stateMachine.ChangeState(new SingleSlashState(this)); // Single Slash jika tombol cepat dilepas
-            }
-            else
-            {
-                stateMachine.ChangeState(new IdleState(this)); // Kembali ke idle jika tombol dilepaskan setelah hold
-            }
-            holdTime = 0f; // Reset hold time setelah tombol dilepaskan
         }
 
         // Ambil input pergerakan
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-         // Periksa jika pemain tidak bergerak untuk kembali ke IdleState
+        // Periksa jika pemain tidak bergerak untuk kembali ke IdleState
         if (movement.sqrMagnitude == 0)
         {
             stateMachine.ChangeState(new IdleState(this));
@@ -97,18 +58,68 @@ public class PlayerMovement : MonoBehaviour
             lastMoveDirection = movement.normalized;
             stateMachine.ChangeState(new WalkState(this));
         }
+
+        // Update posisi attack point
+        UpdateAttackPointPosition();
     }
 
     private void FixedUpdate()
     {
-        if (movement.sqrMagnitude > 0f) 
+        if (movement.sqrMagnitude > 0f)
         {
             MoveCharacter();
         }
     }
-    
+
     public void MoveCharacter()
     {
         rb.MovePosition(rb.position + movement.normalized * _currentSpeed * Time.fixedDeltaTime);
+    }
+
+    void UpdateAttackPointPosition()
+    {
+        if (attackPoint != null)
+        {
+             // Tentukan arah rotasi attack point berdasarkan lastMoveDirection
+            Quaternion newRotation = Quaternion.identity;
+
+            float x = lastMoveDirection.x;
+            float y = lastMoveDirection.y;
+
+            // Periksa arah dengan toleransi untuk mengakomodasi nilai diagonal
+            if (Mathf.Approximately(x, 0) && y > 0) // Atas
+            {
+                newRotation = Quaternion.Euler(0, 0, 90);
+            }
+            else if (Mathf.Approximately(x, 0) && y < 0) // Bawah
+            {
+                newRotation = Quaternion.Euler(0, 0, -90);
+            }
+            else if (x < 0 && Mathf.Approximately(y, 0)) // Kiri
+            {
+                newRotation = Quaternion.Euler(0, 0, 180);
+            }
+            else if (x > 0 && Mathf.Approximately(y, 0)) // Kanan
+            {
+                newRotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (x < 0 && y > 0) // Kiri Atas (Diagonal)
+            {
+                newRotation = Quaternion.Euler(0, 0, 135); // Sudut 135 derajat
+            }
+            else if (x < 0 && y < 0) // Kiri Bawah (Diagonal)
+            {
+                newRotation = Quaternion.Euler(0, 0, -135); // Sudut -135 derajat
+            }
+            else if (x > 0 && y > 0) // Kanan Atas (Diagonal)
+            {
+                newRotation = Quaternion.Euler(0, 0, 45); // Sudut 45 derajat
+            }
+            else if (x > 0 && y < 0) // Kanan Bawah (Diagonal)
+            {
+                newRotation = Quaternion.Euler(0, 0, -45); // Sudut -45 derajat
+            }
+            attackPoint.localRotation = newRotation;
+        }
     }
 }
