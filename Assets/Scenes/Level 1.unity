@@ -32745,7 +32745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3474310115706206604, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       propertyPath: m_Size.y
-      value: 4.16076
+      value: 0.96889645
       objectReference: {fileID: 0}
     - target: {fileID: 3474310115706206604, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       propertyPath: m_Offset.x
@@ -32753,7 +32753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3474310115706206604, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       propertyPath: m_Offset.y
-      value: -0.10943046
+      value: -1.7053623
       objectReference: {fileID: 0}
     - target: {fileID: 3895241262257478777, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       propertyPath: m_Layer
@@ -66481,6 +66481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283e4400fd340044d8e40a0efc1d55ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelButtons: []
 --- !u!1 &1562071528
 GameObject:
   m_ObjectHideFlags: 0
