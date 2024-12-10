@@ -53321,8 +53321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  rb: {fileID: 1259953274}
-  animator: {fileID: 1259953272}
   detectionRange: 5
   changeDirectionTime: 2
 --- !u!114 &1259953276
@@ -78264,7 +78262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1814578163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -78382,9 +78380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18457c6c4d73054b9979e219adb7d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  rb: {fileID: 1814578170}
-  animator: {fileID: 1814578168}
+  moveSpeed: 2
   detectionRange: 1
   changeDirectionTime: 3
 --- !u!95 &1814578168
