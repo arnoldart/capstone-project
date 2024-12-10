@@ -426,6 +426,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1540835956}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &101275932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,7 +1038,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 417539260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Scenema, Assembly-CSharp
         m_MethodName: playbutton
         m_Mode: 1
@@ -1311,7 +1323,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1296273655}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: MusicVolume
+        m_MethodName: ApplySettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1727,7 +1739,6 @@ GameObject:
   - component: {fileID: 417539259}
   - component: {fileID: 417539258}
   - component: {fileID: 417539257}
-  - component: {fileID: 417539260}
   - component: {fileID: 417539261}
   m_Layer: 0
   m_Name: Main Camera
@@ -1811,19 +1822,6 @@ Transform:
   - {fileID: 1397178214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &417539260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417539256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 471908ea57d6c394dbcf869a0b4719ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _optionMenu: {fileID: 2020112256}
 --- !u!114 &417539261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1839,7 +1837,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 417539259}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -3211,7 +3209,7 @@ GameObject:
   - component: {fileID: 991776473}
   - component: {fileID: 991776474}
   - component: {fileID: 991776475}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Brightness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3263,7 +3261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brightnessSlider: {fileID: 1905793335}
-  brightness: {fileID: 11400000, guid: 9be9d49988e0be04788dca549cae20f8, type: 2}
+  brightnessProfile: {fileID: 11400000, guid: 9be9d49988e0be04788dca549cae20f8, type: 2}
   layer: {fileID: 417539261}
 --- !u!1 &996028688
 GameObject:
@@ -3307,7 +3305,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 546f80c95e0c5f14894742aabf5db20b, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -3761,7 +3759,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 417539260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Scenema, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -4468,7 +4466,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 417539260}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Scenema, Assembly-CSharp
         m_MethodName: Options
         m_Mode: 1
@@ -4619,6 +4617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1296273654}
   - component: {fileID: 1296273655}
+  - component: {fileID: 1296273656}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -4655,6 +4654,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSlider: {fileID: 355457794}
   _sfxSlider: {fileID: 1845717427}
+--- !u!114 &1296273656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296273653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471908ea57d6c394dbcf869a0b4719ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseMenu: {fileID: 0}
 --- !u!1 &1335210211
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,6 +4828,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1540835956}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1340713383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4871,7 +4895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1397178214
 Transform:
   m_ObjectHideFlags: 0
@@ -4926,7 +4950,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4953,7 +4977,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 1397178214}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -5081,7 +5105,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 417539260}
+      - m_Target: {fileID: 1296273656}
         m_TargetAssemblyTypeName: Scenema, Assembly-CSharp
         m_MethodName: playbutton
         m_Mode: 1
@@ -5214,7 +5238,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 417539260}
+      - m_Target: {fileID: 1296273656}
         m_TargetAssemblyTypeName: Scenema, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -5347,10 +5371,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 417539260}
-        m_TargetAssemblyTypeName: Scenema, Assembly-CSharp
-        m_MethodName: Options
-        m_Mode: 1
+      - m_Target: {fileID: 1540835956}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5358,6 +5382,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2020112256}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1462334818
 MonoBehaviour:
@@ -5523,7 +5559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.74509805}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6084,7 +6120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 546f80c95e0c5f14894742aabf5db20b, type: 3}
+    clip: {fileID: 8300000, guid: 792d2b35cf079584a8cca8b6c7d91e5f, type: 3}
   sfxSounds:
   - name: DetakJantung
     clip: {fileID: 8300000, guid: afd10d56360f619409d558ce467a348f, type: 3}
@@ -6239,6 +6275,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1540835956}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1727249508
 MonoBehaviour:
@@ -6651,7 +6699,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1296273655}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: SFXVolume
+        m_MethodName: ApplySettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6920,7 +6968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.74509805}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7034,7 +7082,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

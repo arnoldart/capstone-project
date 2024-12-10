@@ -25,51 +25,67 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        playMusic("Theme");
+        PlayMusic("Theme");
     }
 
-    public void playMusic(string name)
+    public void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
         if (s == null)
         {
-            Debug.Log("Sound Not Found");
+            Debug.LogWarning($"Music '{name}' not found!");
+            return;
         }
-        else
+        if (musicSource == null)
         {
-            musicSource.clip = s.clip;
-            musicSource.Play();
+            Debug.LogError("Music source is not assigned!");
+            return;
         }
+
+        musicSource.clip = s.clip;
+        musicSource.Play();
     }
-    public void playSFX(string name)
+
+    public void PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
 
         if (s == null)
         {
-            Debug.Log("Sound Not Found");
+            Debug.LogWarning($"SFX '{name}' not found!");
+            return;
         }
-        else
+        if (sfxSource == null)
         {
-            sfxSource.PlayOneShot(s.clip);
+            Debug.LogError("SFX source is not assigned!");
+            return;
         }
+
+        sfxSource.PlayOneShot(s.clip);
     }
 
     public void ToggleMusic()
     {
-        musicSource.mute = !musicSource.mute;
+        if (musicSource != null)
+            musicSource.mute = !musicSource.mute;
     }
+
     public void ToggleSFX()
     {
-        sfxSource.mute = !sfxSource.mute;
+        if (sfxSource != null)
+            sfxSource.mute = !sfxSource.mute;
     }
+
     public void MusicVolume(float volume)
     {
-        musicSource.volume = volume;
+        if (musicSource != null)
+            musicSource.volume = volume;
     }
+
     public void SFXVolume(float volume)
     {
-        sfxSource.volume = volume;
+        if (sfxSource != null)
+            sfxSource.volume = volume;
     }
 }
