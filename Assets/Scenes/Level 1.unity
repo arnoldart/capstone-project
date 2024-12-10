@@ -32887,7 +32887,8 @@ PrefabInstance:
       value: Player 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3895241262257478777, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2206896529954262167, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       insertIndex: -1
@@ -37022,7 +37023,7 @@ GameObject:
   - component: {fileID: 610333972}
   - component: {fileID: 610333973}
   m_Layer: 6
-  m_Name: Square
+  m_Name: ProjectileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53289,7 +53290,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259953269}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -53321,8 +53322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  detectionRange: 5
-  changeDirectionTime: 2
+  stopThreshold: 0.1
+  target: {fileID: 0}
+  shouldChasePlayer: 0
 --- !u!114 &1259953276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53335,12 +53337,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13513220a2ae2b4419f52bb3c565f328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
+  attackRange: 3.1
+  chaseRange: 3.1
   attackDamage: 10
   attackRate: 1
   maxAttackCount: 3
   attackCooldown: 10
-  moveSpeed: 3
 --- !u!114 &1259953277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78362,12 +78364,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13513220a2ae2b4419f52bb3c565f328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
+  attackRange: 1.24
+  chaseRange: 3.02
   attackDamage: 10
   attackRate: 2
   maxAttackCount: 5
   attackCooldown: 3
-  moveSpeed: 3
 --- !u!114 &1814578167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78381,8 +78383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  detectionRange: 1
-  changeDirectionTime: 3
+  stopThreshold: 0.1
+  target: {fileID: 0}
+  shouldChasePlayer: 1
 --- !u!95 &1814578168
 Animator:
   serializedVersion: 5
