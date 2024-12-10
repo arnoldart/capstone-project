@@ -4,80 +4,71 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float moveSpeed;               // Kecepatan gerak musuh
-    public Rigidbody2D rb;                     // Referensi ke komponen Rigidbody2D
-    public Animator animator;                  // Referensi ke komponen Animator
-    public float detectionRange;          // Jarak deteksi musuh terhadap pemain
-    private Vector2 movement;                  // Arah pergerakan saat ini
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed;           // Kecepatan gerak musuh
+    [SerializeField] private float stopThreshold = 0.1f; // Toleransi untuk berhenti di posisi tujuan
+    private Rigidbody2D rb;                             // Referensi ke Rigidbody2D
+    private Animator animator;                          // Referensi ke Animator
 
-    private Vector2 randomDirection;           // Arah acak untuk gerakan berkelana
-    public float changeDirectionTime = 2f;     // Interval waktu untuk mengubah arah
-    private float directionTimer;              // Timer untuk pelacakan perubahan arah
+    public Transform target;                           // Target (pemain)
+    private Vector2 movement;                           // Arah gerakan musuh
+    public bool shouldChasePlayer = true;              // Apakah musuh harus mengejar pemain?
 
-    private Transform target;                  // Target musuh, biasanya pemain
-
-    void Start()
+    private void Start()
     {
-        // Cari objek dengan tag "Player" dan set sebagai target
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            target = player.transform;
-        }
-
-        directionTimer = changeDirectionTime;  // Setel timer ke interval awal
-        ChangeRandomDirection();               // Set arah acak awal
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    void Update()
+    public void Initialize(Transform playerTarget)
     {
-        if (target == null) return; // Jika target tidak ditemukan, hentikan Update
-
-        // Menghitung jarak antara musuh dan pemain
-        float distanceToPlayer = Vector2.Distance(transform.position, target.position);
-
-        if (distanceToPlayer <= detectionRange) // Jika pemain berada dalam jarak deteksi
-        {
-            // Gerak menuju pemain
-            Vector2 direction = (target.position - transform.position).normalized; // Hitung arah menuju pemain
-            movement = direction; // Set pergerakan berdasarkan arah menuju pemain
-            
-            // Update parameter animator untuk pergerakan
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Speed", movement.sqrMagnitude); // Kecepatan berdasarkan arah
-        }
-        else
-        {
-            // Berjalan secara acak jika pemain di luar jangkauan deteksi
-            directionTimer -= Time.deltaTime;
-
-            if (directionTimer <= 0) // Jika waktunya untuk mengubah arah
-            {
-                ChangeRandomDirection(); // Ubah ke arah acak baru
-                directionTimer = changeDirectionTime; // Atur ulang timer
-            }
-
-            movement = randomDirection; // Set gerakan ke arah acak
-
-            // Update parameter animator untuk pergerakan acak
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Speed", movement.sqrMagnitude); // Set kecepatan berdasarkan arah
-        }
+        target = playerTarget; // Set target dari luar
     }
 
-    void FixedUpdate()
+    public void SetChasePlayer(bool chase)
     {
-        if (target == null) return; // Jika target tidak ditemukan, hentikan FixedUpdate
+        shouldChasePlayer = chase; // Atur apakah musuh harus mengejar pemain
+    }
 
-        // Pindahkan musuh ke arah pergerakan saat ini
+    public void MoveTowards(Vector2 destination)
+    {
+        if (rb == null || target == null) return;
+
+        if (!shouldChasePlayer)
+        {
+            // Jika tidak mengejar, tetap update animasi berdasarkan arah ke pemain
+            Vector2 directionToPlayer = (target.position - transform.position).normalized;
+            UpdateAnimator(directionToPlayer);
+            return;
+        }
+
+        // Hitung jarak ke tujuan
+        float distanceToDestination = Vector2.Distance(transform.position, destination);
+
+        if (distanceToDestination <= stopThreshold)
+        {
+            // Jika sudah dekat dengan tujuan, berhenti dan set arah ke (0, 0)
+            movement = Vector2.zero;
+            UpdateAnimator(new Vector2(0, -1));
+            return;
+        }
+
+        // Hitung arah
+        Vector2 direction = (destination - (Vector2)transform.position).normalized;
+        movement = direction;
+
+        // Pindahkan musuh
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+        // Update animasi
+        UpdateAnimator(direction);
     }
 
-    void ChangeRandomDirection()
+    private void UpdateAnimator(Vector2 direction)
     {
-        // Pilih arah acak untuk pergerakan musuh
-        randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized; // Randomisasi arah
+        if (animator == null) return;
+
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
     }
 }

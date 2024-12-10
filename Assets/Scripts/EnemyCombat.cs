@@ -4,110 +4,124 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    public float attackRange;             // Jarak serangan musuh
-    public int attackDamage;              // Kerusakan yang diberikan ke pemain
-    public float attackRate;              // Frekuensi serangan musuh
-    private float nextAttackTime;         // Waktu untuk serangan berikutnya
+    [Header("Combat Settings")]
+    [SerializeField] private float attackRange;      // Jarak serangan musuh
+    [SerializeField] private float chaseRange;       // Jarak pengejaran musuh
+    [SerializeField] private int attackDamage;       // Kerusakan serangan
+    [SerializeField] private float attackRate;       // Kecepatan serangan
+    [SerializeField] private int maxAttackCount;     // Jumlah maksimum serangan
+    [SerializeField] private float attackCooldown;   // Cooldown serangan
 
-    public int maxAttackCount;            // Jumlah maksimum serangan sebelum cooldown
-    private int currentAttackCount;       // Jumlah serangan saat ini
-    public float attackCooldown;          // Waktu cooldown antara serangan
-    private bool isCooldown = false;      // Apakah musuh dalam keadaan cooldown?
+    private float nextAttackTime;
+    private int currentAttackCount;
+    private bool isCooldown;
 
-    private Transform player;             // Referensi ke pemain
-    private Animator animator;            // Referensi ke animator musuh
+    private Transform player;
+    private Animator animator;
 
-    public float moveSpeed = 3f;          // Kecepatan pergerakan musuh
+    private Vector3 initialPosition;                 // Posisi awal musuh
+    private EnemyMovement enemyMovement;
 
-    void Start()
+    private void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player"); // Cari pemain berdasarkan tag
+        // Simpan posisi awal musuh
+        initialPosition = transform.position;
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
             player = playerObj.transform;
         }
         else
         {
-            Debug.LogError("Player with tag 'Player' not found! Ensure the player GameObject is tagged as 'Player'.");
+            Debug.LogError("Player with tag 'Player' not found!");
         }
 
-        animator = GetComponent<Animator>(); // Mengambil komponen Animator
-        if (animator == null)
+        animator = GetComponent<Animator>();
+        enemyMovement = GetComponent<EnemyMovement>();
+        if (enemyMovement == null)
         {
-            Debug.LogError("Animator component not found on Enemy! Please attach an Animator component.");
+            Debug.LogError("EnemyMovement component not found!");
+        }
+
+        if (player != null && enemyMovement != null)
+        {
+            enemyMovement.Initialize(player); // Set target di EnemyMovement
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (player == null) return; // Jika player tidak ditemukan, jangan lakukan apa-apa
+        if (player == null) return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position); // Hitung jarak ke pemain
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= attackRange) // Jika pemain berada dalam jangkauan serangan
+        if (distanceToPlayer <= attackRange)
         {
-            if (!isCooldown && Time.time >= nextAttackTime) // Jika tidak dalam cooldown dan bisa menyerang
-            {
-                AttackPlayer(); // Lakukan serangan
-                nextAttackTime = Time.time + 1f / attackRate; // Setel waktu untuk serangan berikutnya
-                currentAttackCount++;
-
-                if (currentAttackCount >= maxAttackCount) // Jika sudah mencapai batas serangan
-                {
-                    StartCoroutine(AttackCooldown()); // Mulai cooldown
-                }
-            }
+            // Jika dalam jarak serangan, lakukan serangan
+            HandleCombat();
         }
-
-        // Menggerakkan musuh ke arah pemain
-        if (distanceToPlayer > attackRange) // Jika pemain lebih jauh dari jangkauan serangan
+        else if (distanceToPlayer <= chaseRange)
         {
-            MoveTowardsPlayer(); // Gerakkan musuh ke arah pemain
+            // Jika dalam jarak pengejaran, kejar pemain
+            enemyMovement?.MoveTowards(player.position);
+        }
+        else
+        {
+            // Jika terlalu jauh, kembali ke posisi awal
+            enemyMovement?.MoveTowards(initialPosition);
         }
     }
 
-    void AttackPlayer()
+    private void HandleCombat()
     {
-        if (player == null) return; // Pastikan player masih valid
+        if (isCooldown || Time.time < nextAttackTime) return;
+
+        AttackPlayer();
+
+        nextAttackTime = Time.time + 1f / attackRate;
+        currentAttackCount++;
+
+        if (currentAttackCount >= maxAttackCount)
+        {
+            StartCoroutine(AttackCooldown());
+        }
+    }
+
+    private void AttackPlayer()
+    {
+        if (player == null) return;
 
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            animator.SetTrigger("Attack"); // Memicu animasi serangan
-            playerHealth.TakeDamage(attackDamage); // Memberikan kerusakan pada pemain
+            animator.SetTrigger("Attack");
+            playerHealth.TakeDamage(attackDamage);
         }
         else
         {
-            Debug.LogError("PlayerHealth component not found on Player! Please attach a PlayerHealth component.");
-        }
-    }
-
-    void MoveTowardsPlayer()
-    {
-        if (player == null) return;
-
-        // Menghitung arah menuju pemain
-        Vector2 direction = (player.position - transform.position).normalized;
-        
-        // Menggerakkan musuh ke arah pemain
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-
-        // Update parameter animasi untuk Blend Tree
-        animator.SetFloat("Horizontal", direction.x);
-        animator.SetFloat("Vertical", direction.y);
-        
-        // Memutar musuh agar menghadap ke arah pemain
-        if (direction.x != 0)
-        {
-            transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
+            Debug.LogError("PlayerHealth component not found on Player!");
         }
     }
 
     private IEnumerator AttackCooldown()
     {
-        isCooldown = true; // Mulai cooldown
-        yield return new WaitForSeconds(attackCooldown); // Tunggu hingga cooldown selesai
-        currentAttackCount = 0; // Reset jumlah serangan
-        isCooldown = false; // Reset cooldown
+        isCooldown = true;
+        yield return new WaitForSeconds(attackCooldown);
+        currentAttackCount = 0;
+        isCooldown = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (transform == null) return;
+
+        // Visualisasi attackRange
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        // Visualisasi chaseRange
+        Gizmos.color = new Color(0, 0, 1, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
 }
