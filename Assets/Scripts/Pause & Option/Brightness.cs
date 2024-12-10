@@ -8,26 +8,33 @@ public class Brightness : MonoBehaviour
 {
     public Slider brightnessSlider;
 
-    public PostProcessProfile brightness;
+    public PostProcessProfile brightnessProfile;
     public PostProcessLayer layer;
 
-    AutoExposure exposure;
+    private AutoExposure exposure;
+    private const string BRIGHTNESS_KEY = "BrightnessValue";
 
     void Start()
     {
-        brightness.TryGetSettings(out exposure);
-        AdjustBrightness(brightnessSlider.value);
+        if (brightnessProfile.TryGetSettings(out exposure))
+        {
+            float savedBrightness = PlayerPrefs.GetFloat(BRIGHTNESS_KEY, 1f);
+            brightnessSlider.value = Mathf.Clamp(savedBrightness, 0.05f, 2f);
+            AdjustBrightness(brightnessSlider.value);
+        }
+        else
+        {
+            Debug.LogError("AutoExposure not found in PostProcessProfile!");
+        }
     }
 
     public void AdjustBrightness(float value)
     {
-        if(value != 0)
+        if (exposure != null)
         {
-            exposure.keyValue.value = value;
-        }
-        else
-        {
-            exposure.keyValue.value = .05f;
+            exposure.keyValue.value = Mathf.Clamp(value, 0.05f, 2f);
+            PlayerPrefs.SetFloat(BRIGHTNESS_KEY, exposure.keyValue.value);
+            PlayerPrefs.Save();
         }
     }
 }
