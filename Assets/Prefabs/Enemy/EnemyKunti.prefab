@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 2035665642276579749}
   - component: {fileID: 5871294802959314098}
   - component: {fileID: 1205063486532414632}
+  - component: {fileID: -4536571268891564182}
   m_Layer: 3
   m_Name: EnemyKunti
   m_TagString: Enemy
@@ -548,6 +549,35 @@ CapsuleCollider2D:
   m_Offset: {x: 0.000014647841, y: -0.1953125}
   m_Size: {x: 0.291908, y: 0.29190803}
   m_Direction: 0
+--- !u!114 &-4536571268891564182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933971798222123291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8c03b528497d648bd342ce0919ecf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagObject: Projectile
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5871294802959314098}
+        m_TargetAssemblyTypeName: EnemyHealth, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  destroyTriggerAfterUse: 0
 --- !u!1 &8367715415770180278
 GameObject:
   m_ObjectHideFlags: 0
