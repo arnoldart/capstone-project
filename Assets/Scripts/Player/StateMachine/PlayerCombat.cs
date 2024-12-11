@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -37,6 +38,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         ApplyDamage();
+        
     }
 
     // Memberikan damage kepada musuh dalam radius serangan melee
@@ -63,4 +65,20 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange); // Menampilkan area serangan
     }
+
+    public void PlaySwordSFX()
+    {
+        AudioManager.instance.PlaySFX("pedang1");
+    }
+    public void PlaySwordSFX2()
+    {
+        AudioManager.instance.PlaySFX("pedang2");
+    }
+    public void PlaySwordSFX3()
+    {
+        AudioManager.instance.PlaySFX("pedang3");
+    }
+
+
+
 }

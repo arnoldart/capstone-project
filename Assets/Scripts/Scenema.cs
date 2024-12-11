@@ -3,17 +3,27 @@ using UnityEngine;
 
 public class Scenema : MonoBehaviour
 {
-    [SerializeField] private GameObject _optionMenu;
+    public GameObject _pauseMenu;
     public void playbutton()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene("SampleSceneChapter");
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     public void Quit()
     {
         Application.Quit();
     }
-    public void Options()
+    public void PauseGame()
     {
-        _optionMenu.SetActive(true);
+        _pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ResumeGame()
+    {
+        _pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
