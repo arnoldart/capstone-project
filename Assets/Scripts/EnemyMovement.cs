@@ -14,10 +14,18 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 movement;                           // Arah gerakan musuh
     public bool shouldChasePlayer = true;              // Apakah musuh harus mengejar pemain?
 
+    [Header("Sound Settings")]
+    [SerializeField] private bool canRoar = false;
+    [SerializeField] private float roarInterval = 5f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        if (canRoar)
+        {
+            StartCoroutine(RoarRoutine());
+        }
     }
 
     public void Initialize(Transform playerTarget)
@@ -70,5 +78,32 @@ public class EnemyMovement : MonoBehaviour
 
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
+    }
+
+    private IEnumerator RoarRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(roarInterval);
+
+            if (canRoar)
+            {
+                AudioManager.instance.PlaySFX("MonsterRoar2");
+            }
+        }
+    }
+
+    public void SetCanRoar(bool enable)
+    {
+        canRoar = enable;
+
+        if (canRoar)
+        {
+            StartCoroutine(RoarRoutine());
+        }
+        else
+        {
+            StopCoroutine(RoarRoutine());
+        }
     }
 }
