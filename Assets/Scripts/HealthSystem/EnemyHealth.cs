@@ -8,10 +8,13 @@ public class EnemyHealth : Health
     public HealthBarUI healthBarUI; 
     private bool hasTakenDamage = false;        // Menambahkan flag untuk mengecek apakah musuh sudah terkena damage
 
+    private EnemyMovement _enemyMovement;
+
     protected override void Initialize()
     {
         // HealthBarUI.SetHealth(100, 100);
         animator = GetComponent<Animator>();
+        _enemyMovement = GetComponent<EnemyMovement>();
         
         if (healthBarUI != null)
         {
@@ -53,6 +56,7 @@ public class EnemyHealth : Health
         
         if (animator != null)
         {
+            _enemyMovement.EnemyStop();
             animator.SetTrigger("Die");
         }
 
