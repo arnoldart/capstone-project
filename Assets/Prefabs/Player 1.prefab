@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4549634180598077426}
-  projectilePool: {fileID: 0}
+  projectilePrefab: {fileID: 8836887276562578132, guid: 86ec924ecbb13e74cbe63b1a39810f31, type: 3}
   attackPoint: {fileID: 5096030652493758851}
   projectileSpeed: 4
 --- !u!1 &8390925622804655179

@@ -4,45 +4,47 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float lifetime = 5f; // Waktu hidup projectile sebelum dinonaktifkan
-    private Rigidbody2D rb;     // Rigidbody2D untuk gerakan projectile
-    private Animator animator;  // Animator untuk kontrol animasi
+    public float lifetime = 5f;  // Waktu hidup projectile sebelum dihancurkan
+    private Rigidbody2D rb;      // Rigidbody2D untuk gerakan projectile
+    private Animator animator;   // Animator untuk kontrol animasi
 
-    void Awake()
+    void Start()
     {
         // Ambil komponen Rigidbody2D dan Animator
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        // Hancurkan projectile setelah waktu tertentu
+        Destroy(gameObject, lifetime);
+
+        // Aktifkan animasi bergerak
+        SetAnimationMovement();
     }
 
-    void OnEnable()
+    // Fungsi untuk mengatur animasi berdasarkan kecepatan
+    void SetAnimationMovement()
     {
-        // Reset kondisi saat diaktifkan
-        StartCoroutine(DisableAfterTime());
+        if (animator != null)
+        {
+            // Set parameter "isMoving" berdasarkan kecepatan
+            animator.SetBool("isMoving", rb.velocity != Vector2.zero);
+        }
     }
 
-    IEnumerator DisableAfterTime()
+    // Fungsi ini bisa digunakan untuk menangani tabrakan dengan objek lain
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        yield return new WaitForSeconds(lifetime);
-        gameObject.SetActive(false); // Nonaktifkan daripada menghancurkan
+        // Misalnya, hancurkan projectile saat menabrak musuh atau objek lain
+        Destroy(gameObject);
     }
 
-    // Atur animasi berdasarkan kecepatan
+    // Optional: Pengaturan untuk mematikan animasi jika diperlukan
     void Update()
     {
-    }
-
-    public void Launch(Vector2 direction, float speed)
-    {
-        // Atur kecepatan projectile
-        rb.velocity = direction * speed;
-    }
-
-    public void Explode() {
-        animator.SetTrigger("explode");
-    }
-
-    public void disable() {
-        gameObject.SetActive(false);
+        // Jika animator ada dan projectile bergerak, set "isMoving" menjadi true
+        if (animator != null)
+        {
+            SetAnimationMovement();
+        }
     }
 }

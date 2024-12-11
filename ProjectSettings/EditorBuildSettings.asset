@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleSceneChapter.unity
     guid: dd10e403a8ea08548ab375554c9a6372
   - enabled: 1
+    path: Assets/Scenes/Video.unity
+    guid: a1b224989b007e54ca6650fecab274e8
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: e85e08f20aaaa324ba9bc14c302ada2a
   - enabled: 1
