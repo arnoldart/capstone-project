@@ -998,7 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471908ea57d6c394dbcf869a0b4719ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseMenu: {fileID: 0}
+  _pauseMenu: {fileID: 448870907}
 --- !u!114 &968452247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,6 +1013,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSlider: {fileID: 0}
   _sfxSlider: {fileID: 0}
+  defeatPanel: {fileID: 448870907}
+  HUD: {fileID: 448870907}
+  PauseButton: {fileID: 448870907}
 --- !u!1 &1019396017
 GameObject:
   m_ObjectHideFlags: 0
