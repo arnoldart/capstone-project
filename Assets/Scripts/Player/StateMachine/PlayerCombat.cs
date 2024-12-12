@@ -78,6 +78,10 @@ public class PlayerCombat : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("pedang3");
     }
+    public void PlayFireBallSFX()
+    {
+        AudioManager.instance.PlaySFX("FireBall");
+    }
 
 
 
