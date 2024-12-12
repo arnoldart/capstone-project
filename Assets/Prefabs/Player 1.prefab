@@ -159,7 +159,6 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
-  healthSlider: {fileID: 0}
 --- !u!114 &2983145286610184588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4549634180598077426}
-  projectilePrefab: {fileID: 8836887276562578132, guid: 86ec924ecbb13e74cbe63b1a39810f31, type: 3}
+  projectilePool: {fileID: 0}
   attackPoint: {fileID: 5096030652493758851}
   projectileSpeed: 4
 --- !u!1 &8390925622804655179
@@ -300,7 +299,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8390925622804655179}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerProjectileAttack : MonoBehaviour
 {
     public Animator animator; // Animator untuk animasi tembakan
-    public GameObject projectilePrefab; // Prefab untuk projectile
+    public ObjectPool projectilePool; // Referensi ke Object Pool
     public Transform attackPoint; // Titik dari mana projectile ditembakkan
-    public float projectileSpeed = 10f; // Kecepatan tembakan
+    public float projectileSpeed = 10f; // Kecepatan projectile
 
-    private PlayerHealth playerHealth; // Skrip kesehatan pemain
+    private PlayerHealth playerHealth;
 
     void Start()
     {
@@ -18,34 +18,39 @@ public class PlayerProjectileAttack : MonoBehaviour
 
     void Update()
     {
-        // Pastikan pemain tidak mati sebelum melakukan tembakan
         if (playerHealth != null && playerHealth.IsDead())
             return;
 
-        // Periksa input untuk tembakan (klik kanan)
-        if (Input.GetMouseButtonDown(1)) // Klik kanan untuk tembakan
+        // Klik kanan untuk menembak
+        if (Input.GetMouseButtonDown(1))
         {
             PerformShoot();
         }
     }
 
-    // Melakukan tembakan
     void PerformShoot()
     {
-        // Trigger animasi tembakan menggunakan trigger "Shoot"
+        // Trigger animasi tembakan
         if (animator != null)
         {
             animator.SetTrigger("Shoot");
         }
 
-        // Instansiasi projectile
-        GameObject projectile = Instantiate(projectilePrefab, attackPoint.position, Quaternion.identity);
+        // Ambil projectile dari pool
+        GameObject projectile = projectilePool.GetObject();
 
-        // Menghitung arah tembakan berdasarkan posisi mouse
-        Vector2 shootDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - attackPoint.position).normalized;
+        // Atur posisi dan rotasi projectile
+        projectile.transform.position = attackPoint.position;
+        projectile.transform.rotation = attackPoint.rotation;
 
-        // Memberikan kecepatan dan arah pada projectile
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = shootDirection * projectileSpeed; // Tentukan kecepatan dan arah projectile
+        // Tentukan arah tembakan
+        Vector2 shootDirection = attackPoint.right.normalized;
+
+        // Luncurkan projectile
+        Projectile projScript = projectile.GetComponent<Projectile>();
+        if (projScript != null)
+        {
+            projScript.Launch(shootDirection, projectileSpeed);
+        }
     }
 }
