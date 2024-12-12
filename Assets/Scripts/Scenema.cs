@@ -26,4 +26,9 @@ public class Scenema : MonoBehaviour
         _pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }
+    public void NextLeveL()
+    {
+        SceneManager.LoadScene("SampleSceneChapter");
+        Time.timeScale = 1;
+    }
 }
