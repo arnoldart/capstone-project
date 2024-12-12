@@ -72,6 +72,11 @@ public class EnemyMovement : MonoBehaviour
         UpdateAnimator(direction);
     }
 
+    public void EnemyStop() 
+    {
+        moveSpeed = 0f;
+    }
+
     private void UpdateAnimator(Vector2 direction)
     {
         if (animator == null) return;
