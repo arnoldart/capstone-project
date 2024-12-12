@@ -12103,7 +12103,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 941245122}
-  m_Father: {fileID: 413795826}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -34954,10 +34954,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1119725457}
     m_Modifications:
-    - target: {fileID: 469846110852567779, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2206896529954262167, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1603589
@@ -34998,10 +34994,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2983145286610184588, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
-      propertyPath: attackDamage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3530724639972723044, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       propertyPath: projectilePool
       value: 
@@ -35009,10 +35001,6 @@ PrefabInstance:
     - target: {fileID: 4776408676634583123, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
       propertyPath: m_Name
       value: Player 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776408676634583123, guid: f2602553bb5e77f4193c383aff8c7e72, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -60209,7 +60197,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 413795826}
   - {fileID: 912758262}
   m_Father: {fileID: 869569120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -88730,7 +88717,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1738580636}
-  m_Father: {fileID: 413795826}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -94661,3 +94648,6 @@ SceneRoots:
   - {fileID: 1119725457}
   - {fileID: 883262800}
   - {fileID: 1077192858}
+  - {fileID: 113739082}
+  - {fileID: 319514624}
+  - {fileID: 1924870182}
