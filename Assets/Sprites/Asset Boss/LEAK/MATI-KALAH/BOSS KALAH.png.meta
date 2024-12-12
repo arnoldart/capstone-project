@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: cd2e52e2243737d4f9a71ce4e3dcc4d7
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BOSS KALAH_31
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 70
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2cad40799a2c9c47bf3dc84f2942dae
+      internalID: 271336302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_32
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 70
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6efae7377ab578e45a3f92c5c476a52c
+      internalID: 1915787612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_33
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 70
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13db6eb984dbe7846898cebc665e90e4
+      internalID: 2132065325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_34
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 70
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f574764103df25458b291d0aa13c6e7
+      internalID: 1304462676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_35
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 70
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f02cad35c31fd40997f8f83150a697
+      internalID: 1422952134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_36
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 70
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b014951271fa74f97052a7db2e9ef4
+      internalID: -1593227240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_37
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 70
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4feb43e385189f7469d378129e6fd7bc
+      internalID: 1315950395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_0
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 12
+        width: 108
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 1, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4703555b2b53649a223c6c35fc768b
+      internalID: 1649889432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_1
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 22
+        width: 86
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 5, y: 0, z: 0, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 739b48a7373ee7448bb605cba7c8d401
+      internalID: 948635802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BOSS KALAH_2
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 39
+        width: 59
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d45bc3a1cccf74fb81bd447d64c29d
+      internalID: 979227208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      BOSS KALAH_0: 1649889432
+      BOSS KALAH_1: 948635802
+      BOSS KALAH_10: 854308178
+      BOSS KALAH_11: 413158439
+      BOSS KALAH_12: -67656489
+      BOSS KALAH_13: 403452066
+      BOSS KALAH_14: -559625126
+      BOSS KALAH_15: -1062587215
+      BOSS KALAH_16: -165891976
+      BOSS KALAH_17: -409482797
+      BOSS KALAH_18: 1091428653
+      BOSS KALAH_19: -1890183411
+      BOSS KALAH_2: 979227208
+      BOSS KALAH_20: -1052801007
+      BOSS KALAH_21: -513953978
+      BOSS KALAH_22: 610887512
+      BOSS KALAH_23: -1627850372
+      BOSS KALAH_24: -1931837098
+      BOSS KALAH_25: 1393963355
+      BOSS KALAH_26: 1219525488
+      BOSS KALAH_27: -313873675
+      BOSS KALAH_28: -787251883
+      BOSS KALAH_29: 278901561
+      BOSS KALAH_3: 571010116
+      BOSS KALAH_30: 231611764
+      BOSS KALAH_31: 271336302
+      BOSS KALAH_32: 1915787612
+      BOSS KALAH_33: 2132065325
+      BOSS KALAH_34: 1304462676
+      BOSS KALAH_35: 1422952134
+      BOSS KALAH_36: -1593227240
+      BOSS KALAH_37: 1315950395
+      BOSS KALAH_38: -1555658102
+      BOSS KALAH_39: -1453341867
+      BOSS KALAH_4: -1012420649
+      BOSS KALAH_40: 1480618882
+      BOSS KALAH_41: 793524688
+      BOSS KALAH_42: 1376942439
+      BOSS KALAH_43: 1006549698
+      BOSS KALAH_44: -1371031610
+      BOSS KALAH_45: -103611426
+      BOSS KALAH_46: 1697317650
+      BOSS KALAH_47: -792990423
+      BOSS KALAH_48: -741835223
+      BOSS KALAH_49: 1869059120
+      BOSS KALAH_5: 1929732035
+      BOSS KALAH_50: -1327247057
+      BOSS KALAH_51: 430264223
+      BOSS KALAH_52: 155458043
+      BOSS KALAH_6: 1589070601
+      BOSS KALAH_7: 885672618
+      BOSS KALAH_8: 849326260
+      BOSS KALAH_9: 1726617385
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
