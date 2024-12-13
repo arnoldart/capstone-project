@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Projectile
+  - ProjectileEnemy
   layers:
   - Default
   - TransparentFX
@@ -39,8 +40,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - Glow
   m_SortingLayers:
   - name: Default
     uniqueID: 0

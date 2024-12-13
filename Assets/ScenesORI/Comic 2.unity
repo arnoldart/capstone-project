@@ -383,7 +383,7 @@ MonoBehaviour:
   comicDisplay: {fileID: 671319496}
   comicPanelNames:
   - {fileID: 21300000, guid: 0d2a5d45230751542b4f3133c3696118, type: 3}
-  nextSceneName: MainMenu
+  nextSceneName: Credit
 --- !u!1 &1485270511
 GameObject:
   m_ObjectHideFlags: 0

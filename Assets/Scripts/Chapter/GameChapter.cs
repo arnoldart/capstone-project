@@ -16,7 +16,7 @@ public class GameChapter : MonoBehaviour
 
     private void Awake()
     {
-        filePath = Path.Combine(Application.dataPath, "Scripts/Chapter/ChapterData.json");
+        filePath = Path.Combine(Application.dataPath, "ChapterData.json");
         EnsureJsonFileExists();
     }
 

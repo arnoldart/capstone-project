@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ScenesORI/Comic.unity
     guid: d93f162948c0725479ed0c6ae40e6354
+  - enabled: 1
+    path: Assets/ScenesORI/Comic 1.unity
+    guid: b975e328cb7de33488bcace5cd30c5b6
+  - enabled: 1
+    path: Assets/ScenesORI/Comic 2.unity
+    guid: 9fd97c43180ab5a459fa9b63ad65f793
+  - enabled: 1
+    path: Assets/ScenesORI/Credit.unity
+    guid: 943564e6d9366af4c916552d71683d25
   m_configObjects: {}

@@ -7,6 +7,7 @@ public class NPCInteraction : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private float interactionRadius = 2f; // Radius for interaction
+    [SerializeField] private GameObject interactIndicator; // The "Press F to Interact" indicator
     private bool isPlayerInRange = false;                 // Tracks if player is in range
 
     [Header("Dialogue Settings")]
@@ -25,7 +26,12 @@ public class NPCInteraction : MonoBehaviour
         dialogueQueue = new Queue<DialogueLine>();
         dialogueUI.SetActive(false); // Ensure dialogue UI is hidden initially
 
-        // Ensure both images are hidden initially
+        // Ensure the interact indicator is hidden initially
+        if (interactIndicator != null)
+        {
+            interactIndicator.SetActive(false);
+        }
+
         speakerImageA.enabled = false;
         speakerImageB.enabled = false;
     }
@@ -64,6 +70,13 @@ public class NPCInteraction : MonoBehaviour
         }
 
         dialogueUI.SetActive(true); // Show dialogue UI
+
+        // Hide the interact indicator when dialogue starts
+        if (interactIndicator != null)
+        {
+            interactIndicator.SetActive(false);
+        }
+
         DisplayNextSentence();
     }
 
@@ -81,64 +94,28 @@ public class NPCInteraction : MonoBehaviour
         speakerText.text = currentLine.SpeakerName;
         dialogueText.text = currentLine.DialogueText;
 
-        // Define the scales for active and inactive speakers
-        Vector3 activeScale = new Vector3(1.0f, 1.0f, 1.0f); // Original size
-        Vector3 inactiveScale = new Vector3(0.99f, 0.99f, 1.0f); // 1% smaller
-
-        // Define the colors for active and inactive speakers
-        Color activeColor = Color.white; // Bright color for active speaker
-        Color inactiveColor = new Color(0.8f, 0.8f, 0.8f, 1.0f); // Slightly darker color for inactive speaker
-
-        // Adjust Speaker A
+        // Show Speaker A's image if assigned
         if (currentLine.SpeakerImageA != null)
         {
             speakerImageA.sprite = currentLine.SpeakerImageA;
             speakerImageA.enabled = true;
-
-            if (currentLine.IsSpeakerAActive)
-            {
-                speakerImageA.transform.localScale = activeScale;
-                speakerImageA.color = activeColor;
-            }
-            else
-            {
-                speakerImageA.transform.localScale = inactiveScale;
-                speakerImageA.color = inactiveColor;
-            }
         }
         else
         {
-            speakerImageA.enabled = false;
+            speakerImageA.enabled = false; // Hide Speaker A if no image
         }
 
-        // Adjust Speaker B
+        // Show Speaker B's image if assigned
         if (currentLine.SpeakerImageB != null)
         {
             speakerImageB.sprite = currentLine.SpeakerImageB;
             speakerImageB.enabled = true;
-
-            if (!currentLine.IsSpeakerAActive)
-            {
-                speakerImageB.transform.localScale = activeScale;
-                speakerImageB.color = activeColor;
-            }
-            else
-            {
-                speakerImageB.transform.localScale = inactiveScale;
-                speakerImageB.color = inactiveColor;
-            }
         }
         else
         {
-            speakerImageB.enabled = false;
+            speakerImageB.enabled = false; // Hide Speaker B if no image
         }
-
-        // Debug logs for testing
-        Debug.Log($"{currentLine.SpeakerName}: {currentLine.DialogueText}");
-        Debug.Log($"Speaker A active: {currentLine.IsSpeakerAActive}, Speaker B active: {!currentLine.IsSpeakerAActive}");
     }
-
-
 
     private void EndDialogue()
     {
@@ -153,6 +130,12 @@ public class NPCInteraction : MonoBehaviour
         // Hide both speaker images
         speakerImageA.enabled = false;
         speakerImageB.enabled = false;
+
+        // Show the interact indicator again
+        if (interactIndicator != null && isPlayerInRange)
+        {
+            interactIndicator.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -161,6 +144,12 @@ public class NPCInteraction : MonoBehaviour
         {
             isPlayerInRange = true;
             Debug.Log("Player entered interaction range.");
+
+            // Show the interact indicator
+            if (interactIndicator != null)
+            {
+                interactIndicator.SetActive(true);
+            }
         }
     }
 
@@ -170,6 +159,12 @@ public class NPCInteraction : MonoBehaviour
         {
             isPlayerInRange = false;
             Debug.Log("Player left interaction range.");
+
+            // Hide the interact indicator
+            if (interactIndicator != null)
+            {
+                interactIndicator.SetActive(false);
+            }
         }
     }
 
